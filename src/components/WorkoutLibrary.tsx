@@ -1,12 +1,12 @@
 import WorkoutCard from "./WorkoutCard";
+import type { Workout } from "../types/workout";
 
-interface Workout {
-  id: number;
-  name: string;
-}
 
 const WorkoutLibrary = async () => {
   const response = await fetch(
+
+
+
     "https://api.abcz.workers.dev/api/fitlog"
   );
 
