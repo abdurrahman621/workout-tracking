@@ -3,6 +3,7 @@
 import type { Workout } from "../types/workout";
 import { usePlan } from "../context/PlanContext";
 import Image from "next/image";
+import toast from "react-hot-toast";
 
 interface WorkoutDetailsProps {
   workout: Workout;
@@ -13,7 +14,6 @@ const WorkoutDetails = ({ workout }: WorkoutDetailsProps) => {
 
   return (
     <div className="grid gap-10 md:grid-cols-2">
-      {/* Left Side - Image */}
       <div>
         <Image
           src={workout.image}
@@ -24,19 +24,15 @@ const WorkoutDetails = ({ workout }: WorkoutDetailsProps) => {
         />
       </div>
 
-      {/* Right Side - Details */}
       <div>
-        {/* Title */}
         <h1 className="text-3xl font-black uppercase md:text-4xl">
           {workout.name}
         </h1>
 
-        {/* Description */}
         <p className="mt-3 text-sm leading-6 text-gray-400">
           {workout.description}
         </p>
 
-        {/* Muscle Groups */}
         <div className="mt-4 flex flex-wrap gap-2">
           {workout.muscleGroups.map((muscle) => (
             <span
@@ -48,7 +44,6 @@ const WorkoutDetails = ({ workout }: WorkoutDetailsProps) => {
           ))}
         </div>
 
-        {/* Workout Information */}
         <div className="mt-6 overflow-hidden rounded-xl border border-gray-800 bg-[#151820]">
           <div className="flex justify-between border-b border-gray-800 px-4 py-4">
             <span className="text-xs uppercase text-gray-400">
@@ -121,7 +116,6 @@ const WorkoutDetails = ({ workout }: WorkoutDetailsProps) => {
           </div>
         </div>
 
-        {/* Instructions */}
         <div className="mt-6">
           <h2 className="text-sm font-bold uppercase">
             Instructions
@@ -143,20 +137,23 @@ const WorkoutDetails = ({ workout }: WorkoutDetailsProps) => {
           </ol>
         </div>
 
-        {/* Buttons */}
         <div className="mt-7 flex flex-wrap gap-3">
           <button
-            onClick={() => addToPlan(workout)}
+            onClick={() => {addToPlan(workout)
+                toast.success("workout added to today plan")
+               }}
             className="rounded-lg bg-[#ccff00] px-5 py-3 text-sm font-bold text-black transition hover:bg-[#b8e600]"
           >
             Add to today s plan
           </button>
 
           <button
-            onClick={() => saveWorkout(workout)}
+            onClick={() =>{ saveWorkout(workout)
+                toast.success("Workout saved for later!")
+            }}
             className="rounded-lg border border-gray-700 px-5 py-3 text-sm font-medium text-white transition hover:bg-gray-800"
           >
-            ♡ Save for later
+             Save for later
           </button>
         </div>
       </div>

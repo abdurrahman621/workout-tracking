@@ -34,7 +34,6 @@ const Navbar = () => {
                 </div>
 
 
-                {/* Desktop Navigation */}
                 <div className="hidden items-center gap-10 md:flex">
                     <Link
                         href="/"
@@ -91,10 +90,8 @@ const Navbar = () => {
                 </div>
 
 
-                {/* Desktop Status Badges */}
                 <div className="hidden items-center gap-3 md:flex">
 
-                    {/* Plan Badge */}
                     <Link
                         href="/my-plan"
                         className="flex items-center gap-2 rounded-full bg-[#ccff00] px-4 py-2 text-xs font-black uppercase tracking-wider text-[#101010] transition hover:scale-105"
@@ -105,7 +102,6 @@ const Navbar = () => {
                         </span>
                     </Link>
 
-                    {/* Saved Badge */}
                     <Link
                         href="/my-plan"
                         className="flex items-center gap-2 rounded-full border border-white/30 px-4 py-2 text-xs font-black uppercase tracking-wider text-white transition hover:border-[#ccff00] hover:text-[#ccff00]"
@@ -117,7 +113,6 @@ const Navbar = () => {
                     </Link>
                 </div>
 
-                {/* Mobile Menu Button */}
                 <button
                     type="button"
                     onClick={() => setIsMenuOpen(!isMenuOpen)}
@@ -187,7 +182,7 @@ const Navbar = () => {
                                 My Plan
                             </Link>
 
-                            {/* Mobile Badges */}
+                            
                             <div className="mt-2 flex gap-3 border-t border-white/10 pt-4">
                                 <Link
                                     href="/my-plan"
