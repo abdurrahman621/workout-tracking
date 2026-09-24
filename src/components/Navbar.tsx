@@ -1,5 +1,6 @@
 "use client";
 
+import { usePlan } from "@/context/PlanContext";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -8,6 +9,8 @@ import { useState } from "react";
 const Navbar = () => {
     const pathname = usePathname();
     const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+    const { plan, saved } = usePlan()
 
     const isWorkoutActive = pathname === "/";
     const isPlanActive = pathname === "/my-plan";
@@ -61,6 +64,32 @@ const Navbar = () => {
                         )}
                     </Link>
                 </div>
+                <div className="hidden items-center gap-4 md:flex">
+
+                    <Link
+                        href="/my-plan"
+                        className="flex items-center gap-2 text-sm text-gray-300"
+                    >
+                        Plan
+
+                        <span className="flex h-5 min-w-5 items-center justify-center rounded-full bg-[#ccff00] px-1 text-xs font-bold text-black">
+                            {plan.length}
+                        </span>
+                    </Link>
+
+                    <Link
+                        href="/my-plan"
+                        className="flex items-center gap-2 text-sm text-gray-300"
+                    >
+                        Saved
+
+                        <span className="flex h-5 min-w-5 items-center justify-center rounded-full border border-gray-600 px-1 text-xs text-gray-300">
+                            {saved.length}
+                        </span>
+                    </Link>
+
+                </div>
+
 
                 {/* Desktop Status Badges */}
                 <div className="hidden items-center gap-3 md:flex">
