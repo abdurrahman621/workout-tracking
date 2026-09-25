@@ -2,6 +2,7 @@
 
 import { createContext, useContext, useState } from "react";
 import type { Workout } from "../types/workout";
+// import { Preahvihear } from "next/font/google";
 
 interface PlanContextType {
   plan: Workout[];
@@ -9,6 +10,8 @@ interface PlanContextType {
 
   addToPlan: (workout: Workout) => void;
   saveWorkout: (workout: Workout) => void;
+  removeFromPlan: (id: number) => void;
+  markAsDone: (id: number) => void;
 }
 
 const PlanContext = createContext<PlanContextType | undefined>(
@@ -28,6 +31,7 @@ export const PlanProvider = ({
       ...previousPlan,
       workout,
     ]);
+
   };
 
   const saveWorkout = (workout: Workout) => {
@@ -35,6 +39,21 @@ export const PlanProvider = ({
       ...previousSaved,
       workout,
     ]);
+
+  };
+  const removeFromPlan = (id: number) => {
+    setPlan((previousPlan) =>
+      previousPlan.filter((workout) => workout.id !== id)
+    );
+  };
+  const markAsDone = (id: number) => {
+    setPlan((previousPlan) =>
+      previousPlan.map((workout) =>
+        workout.id === id
+          ? { ...workout, completed: true }
+          : workout
+      )
+    );
   };
 
   return (
@@ -44,6 +63,8 @@ export const PlanProvider = ({
         saved,
         addToPlan,
         saveWorkout,
+        removeFromPlan,
+        markAsDone,
       }}
     >
       {children}

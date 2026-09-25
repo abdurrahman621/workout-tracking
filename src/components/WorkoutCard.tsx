@@ -1,3 +1,5 @@
+"use client"
+// import { usePlan } from "@/context/PlanContext";
 import { Workout } from "@/types/workout";
 import Image from "next/image";
 import Link from "next/link";
@@ -56,6 +58,9 @@ const WorkoutCard = ({ workout }: WorkoutCardProps) => {
                                 ⭐ {workout.rating}
                             </p>
                         </div>
+                       
+
+
 
                     </div>
                 </div>
