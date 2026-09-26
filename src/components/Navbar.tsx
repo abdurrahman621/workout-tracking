@@ -98,7 +98,7 @@ const Navbar = () => {
                     >
                         <span>Plan</span>
                         <span className="flex h-5 min-w-5 items-center justify-center rounded-full bg-[#101010] px-1 text-[10px] text-[#ccff00]">
-                            0
+                            {plan.length}
                         </span>
                     </Link>
 
@@ -108,7 +108,7 @@ const Navbar = () => {
                     >
                         <span>Saved</span>
                         <span className="flex h-5 min-w-5 items-center justify-center rounded-full border border-current px-1 text-[10px]">
-                            0
+                            {saved.length}
                         </span>
                     </Link>
                 </div>
@@ -191,7 +191,7 @@ const Navbar = () => {
                                 >
                                     Plan
                                     <span className="rounded-full bg-[#101010] px-2 py-0.5 text-[#ccff00]">
-                                        0
+                                        {plan.length}
                                     </span>
                                 </Link>
 
@@ -202,7 +202,7 @@ const Navbar = () => {
                                 >
                                     Saved
                                     <span className="rounded-full border border-current px-2 py-0.5">
-                                        0
+                                        {saved.length}
                                     </span>
                                 </Link>
                             </div>

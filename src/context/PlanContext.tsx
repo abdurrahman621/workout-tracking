@@ -11,6 +11,8 @@ interface PlanContextType {
   addToPlan: (workout: Workout) => void;
   saveWorkout: (workout: Workout) => void;
   removeFromPlan: (id: number) => void;
+  removeFromSaved: (id: number) => void;
+
   markAsDone: (id: number) => void;
 }
 
@@ -27,23 +29,38 @@ export const PlanProvider = ({
   const [saved, setSaved] = useState<Workout[]>([]);
 
   const addToPlan = (workout: Workout) => {
-    setPlan((previousPlan) => [
-      ...previousPlan,
-      workout,
-    ]);
-
-  };
+    setPlan((previousPlan) => {
+      const alreadyExists = previousPlan.some(
+        (item) => item.id === workout.id
+      )
+      if (alreadyExists) {
+        return previousPlan
+      }
+      if (previousPlan.length >= 5) {
+        return previousPlan
+      }
+      return [...previousPlan, workout]
+    })
+  }
 
   const saveWorkout = (workout: Workout) => {
-    setSaved((previousSaved) => [
-      ...previousSaved,
-      workout,
-    ]);
-
+    setSaved((previousSaved) => {
+      const alreadyExists = previousSaved.some((item) => item.id === workout.id)
+      if (alreadyExists) {
+        return previousSaved
+      }
+      return [...previousSaved, workout]
+    })
   };
   const removeFromPlan = (id: number) => {
     setPlan((previousPlan) =>
       previousPlan.filter((workout) => workout.id !== id)
+    );
+  };
+
+  const removeFromSaved = (id: number) => {
+    setSaved((previousSaved) =>
+      previousSaved.filter((workout) => workout.id !== id)
     );
   };
   const markAsDone = (id: number) => {
@@ -65,6 +82,7 @@ export const PlanProvider = ({
         saveWorkout,
         removeFromPlan,
         markAsDone,
+        removeFromSaved
       }}
     >
       {children}

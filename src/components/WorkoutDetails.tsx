@@ -10,7 +10,7 @@ interface WorkoutDetailsProps {
 }
 
 const WorkoutDetails = ({ workout }: WorkoutDetailsProps) => {
-  const { addToPlan, saveWorkout } = usePlan();
+  const {plan, addToPlan, saveWorkout } = usePlan();
 
   return (
     <div className="grid gap-10 md:grid-cols-2">
@@ -139,9 +139,18 @@ const WorkoutDetails = ({ workout }: WorkoutDetailsProps) => {
 
         <div className="mt-7 flex flex-wrap gap-3">
           <button
-            onClick={() => {addToPlan(workout)
-                toast.success("workout added to today plan")
-               }}
+            onClick={() => {
+              if(plan.some((item)=>item.id===workout.id)){
+                toast.error("Workout is already in today's plan!")
+                return;
+               }
+               if(plan.length>=5){
+                toast.error("Today's plan can contain up to 5 workouts.")
+                return
+               }
+               addToPlan(workout)
+               toast.success("workout added to today's plan!")
+              }}
             className="rounded-lg bg-[#ccff00] px-5 py-3 text-sm font-bold text-black transition hover:bg-[#b8e600]"
           >
             Add to today s plan

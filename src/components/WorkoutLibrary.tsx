@@ -1,4 +1,4 @@
-import WorkoutCard from "./WorkoutCard";
+import WorkoutList from "./WorkoutList";
 import type { Workout } from "../types/workout";
 
 
@@ -17,14 +17,16 @@ const WorkoutLibrary = async () => {
   const workouts: Workout[] = await response.json();
 
   return (
-    <section id="library" className="px-5 py-16">
+    <section id="library" className="bg-[#0d0f13] text-white px-5 py-16 ">
       <div className="mx-auto max-w-7xl">
-        <h2 className="text-3xl font-bold text-gray-900">The Library</h2>
-        <p className="mt-2 text-gray-500">Twelve lifts covering every major muscle group.</p>
-        <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-          {
-            workouts.map(workout => <WorkoutCard key={workout.id} workout={workout}></WorkoutCard>)
-          }
+        <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
+          <div>
+            <h2 className="text-3xl font-bold text-white">The Library</h2>
+            <p className="mt-2 text-gray-400">Twelve lifts covering every major muscle group.</p>
+          </div>
+        </div>
+        <div className="mt-8">
+          <WorkoutList workouts={workouts}></WorkoutList>
         </div>
       </div>
     </section>

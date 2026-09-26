@@ -1,4 +1,6 @@
+import { notFound } from "next/navigation";
 import WorkoutDetails from "../../../components/WorkoutDetails";
+
 import type { Workout } from "../../../types/workout";
 
 interface WorkoutDetailsPageProps {
@@ -15,6 +17,10 @@ const WorkoutDetailsPage = async ({
   const response = await fetch(
     `https://api.abcz.workers.dev/api/fitlog/${id}`
   );
+
+  if(response.status===404){
+    notFound()
+  }
 
   if (!response.ok) {
     throw new Error("Failed to fetch workout");
